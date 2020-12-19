@@ -1,0 +1,62 @@
+@layout('master')
+
+@section('content')
+    <div class="box">
+    <h2 class="title">Novo usuario</h2>
+
+    <form action="/registro" method="POST">
+      {{ csrfField() }}
+
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input class="input" type="text" name="name" value="{{ old('name', '') }}" placeholder="Nome do usuario">
+          <input class="input" type="email" name="email" value="{{ old('email', '') }}" placeholder="Email do usuario">
+          <input class="input" type="text" name="area" value="{{ old('area', '') }}" placeholder="Area do usuario">
+
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-primary">
+              Adicionar usuario
+          </button>
+        </div>
+      </div>
+
+      {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('email'), hasErrorFor('email')) }}
+    </form>
+  </div>
+  <div class="box">
+    <h1 class="title">CRUD</h1>
+
+      <table class="table is-bordered is-striped is-narrow is-fullwidth">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Area</th> 
+            <th>Ações</th> 
+          </tr>
+        </thead>
+        <tbody>
+          @each(trie in trie)
+            <tr>
+              <td>
+                {{ ($loop.index + 1) }}
+              </td>
+              <td>
+                {{ trie.name }}
+              </td>
+              <td>{{ trie.email }}</td>
+              <td>{{ trie.area }}</td>
+              <td>
+              <a  href="/usuarios/{{trie.id}}" class="btn btn-primary">edit</a>
+              <a href="usuarios/{{trie.id}}" class="btn btn-danger">delete</a>
+          @else
+            <tr>
+              <td colspan="3" class="has-text-centered">Nenhum usuario ainda</td>
+            </tr>
+          @endeach
+        </tbody>
+      </table>
+  </div>
+@endsection
