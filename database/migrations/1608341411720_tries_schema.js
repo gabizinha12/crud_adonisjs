@@ -8,7 +8,7 @@ class TriesSchema extends Schema {
     this.create("tries", (table) => {
       table.string("name", 120);
       table.string("email", 160);
-      table.integer("id");
+      table.increments();
       table
         .enum("area", [
           "sou_medico",

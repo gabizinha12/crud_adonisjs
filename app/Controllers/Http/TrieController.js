@@ -17,7 +17,7 @@ class TrieController {
   }
   async edit({ params, view }) {
     const trie = await Trie.find(params.id);
-    return view.render("index", {
+    return view.render("edit", {
       trie: trie.toJSON(),
     });
   }
@@ -35,6 +35,7 @@ class TrieController {
   async destroy({ params, response, session }) {
     const trie = await Trie.find(params.id);
     await trie.delete();
+    return { data: params };
     session.flash({ successmessage: "Trie has been deleted" });
     return response.redirect("/");
   }

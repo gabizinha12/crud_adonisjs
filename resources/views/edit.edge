@@ -1,0 +1,27 @@
+@layout('master')
+
+@section('content')
+    <div class="box">
+    <h2 class="title">Editar usuario</h2>
+
+    <form action="usuarios/{{trie.id}}/atualizar" method="POST">
+      {{ csrfField() }}
+
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input class="input" type="text" name="name" value="{{ old('name', '') }}" placeholder="Nome do usuario">
+          <input class="input" type="email" name="email" value="{{ old('email', '') }}" placeholder="Email do usuario">
+          <input class="input" type="text" name="area" value="{{ old('area', '') }}" placeholder="Area do usuario">
+
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-primary">
+              Editar usuário
+          </button>
+        </div>
+      </div>
+
+      {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('email'), hasErrorFor('email')) }}
+    </form>
+  </div>
+  @endsection

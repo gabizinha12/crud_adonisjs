@@ -18,6 +18,6 @@ const Route = use("Route");
 
 Route.get("/", "TrieController.index");
 Route.post("/registro", "TrieController.register");
-Route.get("/atualizar", "TrieController.edit");
+Route.get("/usuarios/:id/atualizar", "TrieController.edit");
 Route.post("/usuarios/:id", "TrieController.update").as("trie.update");
 Route.get("usuarios/:id", "TrieController.destroy").as("trie.destroy");

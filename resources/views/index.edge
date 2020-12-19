@@ -49,8 +49,8 @@
               <td>{{ trie.email }}</td>
               <td>{{ trie.area }}</td>
               <td>
-              <a  href="/usuarios/{{trie.id}}" class="btn btn-primary">edit</a>
               <a href="usuarios/{{trie.id}}" class="btn btn-danger">delete</a>
+              <a href="/usuarios/{{trie.id}}/atualizar" class="btn btn-danger">edit</a>
           @else
             <tr>
               <td colspan="3" class="has-text-centered">Nenhum usuario ainda</td>
